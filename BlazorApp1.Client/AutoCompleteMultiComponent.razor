@@ -1,0 +1,33 @@
+﻿@using Blazorise.Components
+
+<h3>AutoComplete MultiSelect Component</h3>
+
+<Autocomplete TItem="string"
+              TValue="string"
+              TextField="@( ( item ) => item )"
+              ValueField="@( ( item ) => item )"
+              Data="@FilterNames"
+              SelectedTexts="@SelectedFilters"
+              SelectedTextsChanged="FilterSelectionsChanged"
+              Placeholder="Search filters..."
+              Filter="AutocompleteFilter.StartsWith"
+              SelectionMode="AutocompleteSelectionMode.Multiple"
+              CloseOnSelection="false"
+              MinLength="0">
+    <NotFoundContent> Sorry... @context was not found!</NotFoundContent>
+</Autocomplete>
+
+
+<Badge>Non-Closing Badge</Badge>
+<Badge CloseClicked="() => { ;}">Closing Badge</Badge>
+
+@code {
+    private List<string> SelectedFilters = new();
+    private List<string> FilterNames= new() { "Filter 1", "Filter 2", "Filter 3", "Filter 4", "Filter 5" };
+
+    private void FilterSelectionsChanged(List<string> aObj)
+    {
+        // Understand we can use 2-way binding but in our actual code we do a lot more here
+        SelectedFilters = aObj;
+    }
+}

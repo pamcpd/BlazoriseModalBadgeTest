@@ -1,0 +1,25 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+
+
+
+<Button Color="Color.Primary" Clicked="ShowModal">Show Modal</Button>
+
+@code {
+    [Inject] public IModalService ModalService { get; set; }
+
+    public Task ShowModal()
+    {
+        return ModalService.Show<AutoCompleteMultiComponent>("Autocomplete Multi Sample");
+    }
+}
+
+
+
